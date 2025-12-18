@@ -12,17 +12,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth;
+            background-color: #FFFFFF;
+        }
         .btn-pulse { animation: pulse 2s infinite; }
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 111, 0, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 111, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 111, 0, 0); }
         }
         #root { min-height: 100vh; display: flex; flex-direction: column; }
+        .highlight-text {
+            color: #FF6F00;
+        }
+        .card-clean {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
     </style>
 </head>
-<body class="bg-white text-gray-900">
+<body class="text-gray-900">
     <div id="root"></div>
 
     <script type="module">
@@ -31,7 +43,8 @@
         import htm from 'https://esm.sh/htm';
         import { 
             ShieldCheck, BrainCircuit, Zap, CheckCircle2, 
-            ChevronRight, Lock, Star, Activity, Award 
+            ChevronRight, Lock, Star, Activity, Award, RefreshCw, Layers, ShieldAlert,
+            Network, Smile, GraduationCap, Sparkles, Eye
         } from 'https://esm.sh/lucide-react@0.263.1';
 
         const html = htm.bind(React.createElement);
@@ -41,11 +54,11 @@
         const CURRENT_YEAR = new Date().getFullYear();
 
         const BenefitCard = ({ icon: Icon, title, description }) => html`
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <div class="mb-4 text-blue-600">
-                    <${Icon} size=${40} />
+            <div class="card-clean p-6 rounded-2xl hover:border-[#FF6F00]/50 hover:bg-gradient-to-br hover:from-white hover:to-gray-100 transition-all duration-300 group">
+                <div class="mb-4 text-[#FF6F00] group-hover:scale-110 transition-transform">
+                    <${Icon} size=${32} />
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-gray-800">${title}</h3>
+                <h3 class="text-lg font-bold mb-2 text-gray-900">${title}</h3>
                 <p class="text-gray-500 text-sm leading-relaxed">${description}</p>
             </div>
         `;
@@ -55,156 +68,162 @@
                 window.open(AFFILIATE_URL, '_blank');
             };
 
+            const ingredients = [
+                { icon: Network, title: "Phosphatidylserine", description: "Cell communication, Memory" },
+                { icon: Smile, title: "Vitamin B6", description: "Brain function, Mood regulation" },
+                { icon: GraduationCap, title: "Choline", description: "Memory, Learning" },
+                { icon: Zap, title: "Vitamin B12", description: "Energy, Nerve support" },
+                { icon: Activity, title: "Magnesium", description: "Relaxation, Nerve function" },
+                { icon: Sparkles, title: "Folic Acid (B9)", description: "Memory, Mental clarity" },
+                { icon: ShieldCheck, title: "Antioxidants", description: "Protects brain cells, Cellular Support" },
+                { icon: Eye, title: "L-Tyrosine Precursors", description: "Mood, Alertness" }
+            ];
+
             return html`
-                <div class="flex flex-col min-h-screen">
+                <div class="flex flex-col min-h-screen bg-white">
                     <!-- Compliance Banner -->
-                    <div class="bg-blue-900 text-white py-2 px-4 text-center text-[10px] md:text-xs font-bold tracking-widest uppercase">
-                        Authorized Distributor - Limited Stock Available
+                    <div class="bg-gray-100 border-b border-gray-200 text-gray-600 py-2 px-4 text-center text-[10px] md:text-xs font-bold tracking-widest uppercase">
+                        Authorized Distributor - Priority Shipping Worldwide
                     </div>
 
                     <!-- Header -->
-                    <header class="border-b border-gray-100 py-4 px-6 md:px-12 flex justify-between items-center bg-white sticky top-0 z-50">
+                    <header class="border-b border-gray-100 py-4 px-6 md:px-12 flex justify-between items-center bg-white/90 backdrop-blur-md sticky top-0 z-50">
                         <div class="flex items-center gap-2">
-                            <${BrainCircuit} class="text-blue-600" size=${32} />
+                            <${BrainCircuit} class="text-[#FF6F00]" size=${32} />
                             <span class="text-2xl font-black tracking-tighter text-gray-900">${PRODUCT_NAME}</span>
                         </div>
-                        <div class="hidden md:flex items-center gap-2 text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full">
+                        <div class="hidden md:flex items-center gap-2 text-xs font-bold text-[#FF6F00] bg-[#FF6F00]/5 border border-[#FF6F00]/20 px-3 py-1.5 rounded-full">
                             <${ShieldCheck} size=${16} />
-                            SECURE SITE
+                            ENCRYPTED SECURE SITE
                         </div>
                     </header>
 
                     <!-- Hero Section -->
-                    <section class="max-w-6xl mx-auto px-6 py-10 md:py-20 grid md:grid-cols-2 gap-12 items-center">
-                        <div class="space-y-6 text-center md:text-left">
-                            <div class="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                                <${Star} size=${14} fill="currentColor" />
-                                #1 Rated Nootropic of 2024
+                    <section class="max-w-6xl mx-auto px-6 py-10 md:py-24 grid md:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-8 text-center md:text-left">
+                            <div class="inline-flex items-center gap-2 bg-[#FF6F00]/10 text-[#FF6F00] border border-[#FF6F00]/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
+                                <${Star} size=${14} class="fill-current" />
+                                Breakthrough Nootropic Formula
                             </div>
                             
-                            <h1 class="text-4xl md:text-6xl font-black text-gray-900 leading-none">
-                                Awaken Your <span class="text-blue-600">Maximum Brain</span> Potential.
+                            <h1 class="text-4xl md:text-7xl font-black text-gray-900 leading-[1.1]">
+                                Activate Your <span class="highlight-text">Cognitive Power</span>.
                             </h1>
                             
-                            <p class="text-lg text-gray-600 leading-relaxed font-medium">
-                                NeuroXen™ is the advanced formula designed for those seeking razor-sharp clarity, unshakeable focus, and long-term memory support.
+                            <p class="text-xl text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0">
+                                NeuroXen™ is the definitive solution for elite mental performance, designed to help you think faster, focus deeper, and remember everything.
                             </p>
 
                             <ul class="space-y-4 inline-block md:block text-left">
                                 ${[
-                                    "Laser Focus and High-Performance Concentration",
-                                    "Sharper and Faster Recall Memory",
-                                    "Sustained Mental Energy Without Jitters",
-                                    "100% Safe and Natural Ingredients"
+                                    "Uninterrupted Flow State & Focus",
+                                    "Rapid Neural Recall & Memory Support",
+                                    "Clean Energy Without Post-Crash Effects",
+                                    "Science-Backed Pharmaceutical Quality"
                                 ].map((item) => html`
                                     <li class="flex items-center gap-3 text-gray-700 font-semibold">
-                                        <${CheckCircle2} class="text-green-500 flex-shrink-0" size=${20} />
+                                        <${CheckCircle2} class="text-[#FF6F00] flex-shrink-0" size=${22} />
                                         ${item}
                                     </li>
                                 `)}
                             </ul>
 
-                            <div class="pt-6">
+                            <div class="pt-4">
                                 <button 
                                     onClick=${handleCtaClick}
-                                    class="btn-pulse w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white text-xl font-black py-5 px-12 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3"
+                                    class="btn-pulse w-full md:w-auto bg-[#FF6F00] hover:bg-[#E66400] text-white text-xl font-black py-6 px-14 rounded-2xl transition-all shadow-[0_20px_50px_rgba(255,111,0,0.2)] flex items-center justify-center gap-3"
                                 >
-                                    GET OFFICIAL DISCOUNT NOW
+                                    ORDER NOW
                                     <${ChevronRight} size=${24} />
                                 </button>
-                                <div class="mt-4 flex flex-col items-center md:items-start gap-1">
-                                    <span class="text-gray-400 text-[10px] flex items-center gap-1">
-                                        <${Lock} size=${12} /> 256-bit Encrypted Transaction
+                                <div class="mt-6 flex flex-col items-center md:items-start gap-1">
+                                    <span class="text-gray-400 text-[10px] uppercase font-bold tracking-widest flex items-center gap-2">
+                                        <${Lock} size=${12} /> Secure Checkout Guaranteed
                                     </span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Product Image -->
-                        <div class="relative cursor-pointer" onClick=${handleCtaClick}>
-                            <div class="absolute -inset-4 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
+                        <div class="relative cursor-pointer group" onClick=${handleCtaClick}>
+                            <div class="absolute -inset-10 bg-[#FF6F00]/10 rounded-full blur-[120px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
                             <img 
                                 src="https://i.ibb.co/Wpf48RN3/q7-G6-D7x-SJcb-QMpw-Yr-Fs-NM8-Yy51ywf-S5-Bopkn-M3i-M.png" 
                                 alt="NeuroXen Premium" 
-                                class="relative z-10 mx-auto max-w-[80%] md:max-w-full drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] hover:scale-105 transition-transform duration-500"
+                                class="relative z-10 mx-auto max-w-full drop-shadow-[0_45px_45px_rgba(0,0,0,0.1)] transition-all duration-700 group-hover:scale-110"
                             />
-                            <div class="absolute bottom-10 right-0 z-20 bg-white p-4 rounded-2xl shadow-2xl border border-blue-50 hidden sm:block">
-                                <div class="flex items-center gap-3">
-                                    <${Award} class="text-blue-600" size=${40} />
+                            <div class="absolute -bottom-6 -right-4 z-20 bg-white p-5 rounded-3xl shadow-2xl border border-gray-100 hidden sm:block">
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-[#FF6F00]/10 p-2 rounded-xl">
+                                        <${Award} class="text-[#FF6F00]" size=${32} />
+                                    </div>
                                     <div>
-                                        <div class="text-[10px] text-gray-400 uppercase font-black">Quality</div>
-                                        <div class="text-sm font-black text-gray-800 tracking-tight">PREMIUM</div>
+                                        <div class="text-[10px] text-gray-400 uppercase font-black">Certificated</div>
+                                        <div class="text-sm font-black text-gray-800 tracking-tight">GMP FACILITY</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <!-- Benefits -->
-                    <section class="bg-gray-50 py-16">
+                    <!-- Advanced Science Section -->
+                    <section class="bg-[#F5F5F5] py-24 border-y border-gray-100">
                         <div class="max-w-6xl mx-auto px-6">
-                            <h2 class="text-3xl font-black text-center mb-12 text-gray-900">The Science Behind ${PRODUCT_NAME}</h2>
-                            <div class="grid md:grid-cols-3 gap-8">
-                                <${BenefitCard} 
-                                    icon=${BrainCircuit}
-                                    title="Neuro-Protection"
-                                    description="Protects your neurons against oxidative stress and age-related cognitive decline."
-                                />
-                                <${BenefitCard} 
-                                    icon=${Zap}
-                                    title="Instant Focus"
-                                    description="Ingredients that cross the blood-brain barrier for rapid action within minutes."
-                                />
-                                <${BenefitCard} 
-                                    icon=${Activity}
-                                    title="Metabolic Health"
-                                    description="Optimizes brain glucose and oxygen utilization to sustain energy for longer periods."
-                                />
+                            <div class="text-center mb-16 space-y-4">
+                                <h2 class="text-3xl md:text-5xl font-black text-gray-900 uppercase tracking-tighter">The Science Behind <span class="text-[#FF6F00]">${PRODUCT_NAME}</span></h2>
+                                <p class="text-gray-500 max-w-2xl mx-auto font-medium">Clinically studied bio-ingredients synergistically blended to optimize every aspect of your neurological health.</p>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                ${ingredients.map(ing => html`<${BenefitCard} ...${ing} />`)}
                             </div>
                         </div>
                     </section>
 
-                    <!-- Final CTA -->
-                    <section class="py-20 text-center px-6">
-                        <div class="max-w-3xl mx-auto space-y-8 bg-blue-50 p-10 md:p-16 rounded-[3rem] border-2 border-dashed border-blue-200">
-                            <h2 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight">
-                                Exclusive Limited Time Offer!
+                    <!-- Final CTA Section -->
+                    <section class="py-24 text-center px-6 relative overflow-hidden bg-white">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#FF6F00]/5 blur-[150px]"></div>
+                        <div class="max-w-4xl mx-auto space-y-10 relative z-10">
+                            <h2 class="text-4xl md:text-6xl font-black text-gray-900 leading-tight uppercase tracking-tighter">
+                                Start Your Transformation Today.
                             </h2>
-                            <p class="text-gray-600 text-lg font-medium">
-                                Check if ${PRODUCT_NAME} is still in stock and secure your bottle with a 60-day money-back guarantee.
+                            <p class="text-gray-500 text-xl font-medium max-w-2xl mx-auto">
+                                Experience the mental clarity you've always wanted. Stock is extremely limited due to high demand.
                             </p>
-                            <button 
-                                onClick=${handleCtaClick}
-                                class="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white text-xl font-black py-6 px-16 rounded-2xl transition-all shadow-2xl flex items-center justify-center gap-3 mx-auto"
-                            >
-                                GO TO OFFICIAL WEBSITE NOW
-                            </button>
-                            <div class="flex justify-center gap-4 opacity-50">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Paypal" class="h-5" />
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="h-5" />
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="h-5" />
+                            
+                            <div class="inline-block w-full md:w-auto">
+                                <button 
+                                    onClick=${handleCtaClick}
+                                    class="w-full md:w-auto bg-[#FF6F00] hover:bg-[#E66400] text-white text-2xl font-black py-7 px-20 rounded-[22px] transition-all flex items-center justify-center gap-4 shadow-xl"
+                                >
+                                    CLAIM YOUR BOTTLE
+                                    <${ChevronRight} size=${28} />
+                                </button>
+                            </div>
+
+                            <div class="flex flex-col items-center gap-4">
+                                <p class="text-[11px] text-gray-400 font-bold uppercase tracking-[0.2em]">Safe Trusted Transaction</p>
                             </div>
                         </div>
                     </section>
 
                     <!-- Footer -->
-                    <footer class="bg-white border-t border-gray-100 py-16 px-6">
+                    <footer class="bg-gray-50 py-20 px-6 border-t border-gray-100">
                         <div class="max-w-6xl mx-auto text-center">
-                            <div class="flex flex-col md:flex-row justify-center items-center gap-10 mb-12">
-                                <div class="flex items-center gap-2 opacity-40">
-                                    <${BrainCircuit} size=${24} />
-                                    <span class="text-lg font-black tracking-tighter uppercase">${PRODUCT_NAME}</span>
-                                </div>
+                            <div class="flex justify-center items-center gap-3 mb-12 opacity-50">
+                                <${BrainCircuit} size=${30} class="text-[#FF6F00]" />
+                                <span class="text-2xl font-black tracking-tighter uppercase text-gray-900">${PRODUCT_NAME}</span>
                             </div>
                             
-                            <div class="space-y-6 text-[10px] text-gray-400 text-center leading-relaxed max-w-4xl mx-auto border-t border-gray-50 pt-10">
+                            <div class="space-y-8 text-[11px] text-gray-500 text-center leading-relaxed max-w-5xl mx-auto">
+                                <p class="uppercase font-black tracking-widest text-gray-400">Official Disclaimer</p>
                                 <p>
-                                    <strong>MEDICAL DISCLAIMER:</strong> The information provided here is not intended to replace professional medical advice. This product is not intended to diagnose, treat, cure, or prevent any disease. Results vary from person to person.
+                                    <strong>MEDICAL DISCLAIMER:</strong> These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Always consult with a qualified healthcare professional before starting any diet, exercise or supplementation program.
                                 </p>
                                 <p>
-                                    This site is not affiliated with Google or any Google entity. Once you leave Google, the responsibility is no longer theirs, but ours. we make every effort to clearly state and show all product evidence and use real results.
+                                    Google is a trademark of Google, Inc. This site is not part of the Google website or Google Inc. Additionally, this site is NOT endorsed by Google in any way.
                                 </p>
-                                <p>© ${CURRENT_YEAR} ${PRODUCT_NAME} - Authorized Independent Distribution.</p>
+                                <p class="pt-8 border-t border-gray-200 font-bold">© ${CURRENT_YEAR} ${PRODUCT_NAME} • EXCLUSIVE AUTHORIZED INDEPENDENT DISTRIBUTOR. ALL RIGHTS RESERVED.</p>
                             </div>
                         </div>
                     </footer>

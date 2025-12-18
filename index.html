@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroXen - Official Cognitive Support</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .btn-pulse { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+        #root { min-height: 100vh; display: flex; flex-direction: column; }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <div id="root"></div>
+
+    <script type="module">
+        import React from 'https://esm.sh/react@18.2.0';
+        import ReactDOM from 'https://esm.sh/react-dom@18.2.0/client';
+        import htm from 'https://esm.sh/htm';
+        import { 
+            ShieldCheck, BrainCircuit, Zap, CheckCircle2, 
+            ChevronRight, Lock, Star, Activity, Award 
+        } from 'https://esm.sh/lucide-react@0.263.1';
+
+        const html = htm.bind(React.createElement);
+
+        const AFFILIATE_URL = "https://getneuroxen.com/#aff=YuriSovi";
+        const PRODUCT_NAME = "NeuroXen™";
+        const CURRENT_YEAR = new Date().getFullYear();
+
+        const BenefitCard = ({ icon: Icon, title, description }) => html`
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div class="mb-4 text-blue-600">
+                    <${Icon} size=${40} />
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-gray-800">${title}</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">${description}</p>
+            </div>
+        `;
+
+        const App = () => {
+            const handleCtaClick = () => {
+                window.open(AFFILIATE_URL, '_blank');
+            };
+
+            return html`
+                <div class="flex flex-col min-h-screen">
+                    <!-- Compliance Banner -->
+                    <div class="bg-blue-900 text-white py-2 px-4 text-center text-[10px] md:text-xs font-bold tracking-widest uppercase">
+                        Authorized Distributor - Limited Stock Available
+                    </div>
+
+                    <!-- Header -->
+                    <header class="border-b border-gray-100 py-4 px-6 md:px-12 flex justify-between items-center bg-white sticky top-0 z-50">
+                        <div class="flex items-center gap-2">
+                            <${BrainCircuit} class="text-blue-600" size=${32} />
+                            <span class="text-2xl font-black tracking-tighter text-gray-900">${PRODUCT_NAME}</span>
+                        </div>
+                        <div class="hidden md:flex items-center gap-2 text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full">
+                            <${ShieldCheck} size=${16} />
+                            SECURE SITE
+                        </div>
+                    </header>
+
+                    <!-- Hero Section -->
+                    <section class="max-w-6xl mx-auto px-6 py-10 md:py-20 grid md:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-6 text-center md:text-left">
+                            <div class="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                                <${Star} size=${14} fill="currentColor" />
+                                #1 Rated Nootropic of 2024
+                            </div>
+                            
+                            <h1 class="text-4xl md:text-6xl font-black text-gray-900 leading-none">
+                                Awaken Your <span class="text-blue-600">Maximum Brain</span> Potential.
+                            </h1>
+                            
+                            <p class="text-lg text-gray-600 leading-relaxed font-medium">
+                                NeuroXen™ is the advanced formula designed for those seeking razor-sharp clarity, unshakeable focus, and long-term memory support.
+                            </p>
+
+                            <ul class="space-y-4 inline-block md:block text-left">
+                                ${[
+                                    "Laser Focus and High-Performance Concentration",
+                                    "Sharper and Faster Recall Memory",
+                                    "Sustained Mental Energy Without Jitters",
+                                    "100% Safe and Natural Ingredients"
+                                ].map((item) => html`
+                                    <li class="flex items-center gap-3 text-gray-700 font-semibold">
+                                        <${CheckCircle2} class="text-green-500 flex-shrink-0" size=${20} />
+                                        ${item}
+                                    </li>
+                                `)}
+                            </ul>
+
+                            <div class="pt-6">
+                                <button 
+                                    onClick=${handleCtaClick}
+                                    class="btn-pulse w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white text-xl font-black py-5 px-12 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3"
+                                >
+                                    GET OFFICIAL DISCOUNT NOW
+                                    <${ChevronRight} size=${24} />
+                                </button>
+                                <div class="mt-4 flex flex-col items-center md:items-start gap-1">
+                                    <span class="text-gray-400 text-[10px] flex items-center gap-1">
+                                        <${Lock} size=${12} /> 256-bit Encrypted Transaction
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Image -->
+                        <div class="relative cursor-pointer" onClick=${handleCtaClick}>
+                            <div class="absolute -inset-4 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
+                            <img 
+                                src="https://i.ibb.co/Wpf48RN3/q7-G6-D7x-SJcb-QMpw-Yr-Fs-NM8-Yy51ywf-S5-Bopkn-M3i-M.png" 
+                                alt="NeuroXen Premium" 
+                                class="relative z-10 mx-auto max-w-[80%] md:max-w-full drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] hover:scale-105 transition-transform duration-500"
+                            />
+                            <div class="absolute bottom-10 right-0 z-20 bg-white p-4 rounded-2xl shadow-2xl border border-blue-50 hidden sm:block">
+                                <div class="flex items-center gap-3">
+                                    <${Award} class="text-blue-600" size=${40} />
+                                    <div>
+                                        <div class="text-[10px] text-gray-400 uppercase font-black">Quality</div>
+                                        <div class="text-sm font-black text-gray-800 tracking-tight">PREMIUM</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Benefits -->
+                    <section class="bg-gray-50 py-16">
+                        <div class="max-w-6xl mx-auto px-6">
+                            <h2 class="text-3xl font-black text-center mb-12 text-gray-900">The Science Behind ${PRODUCT_NAME}</h2>
+                            <div class="grid md:grid-cols-3 gap-8">
+                                <${BenefitCard} 
+                                    icon=${BrainCircuit}
+                                    title="Neuro-Protection"
+                                    description="Protects your neurons against oxidative stress and age-related cognitive decline."
+                                />
+                                <${BenefitCard} 
+                                    icon=${Zap}
+                                    title="Instant Focus"
+                                    description="Ingredients that cross the blood-brain barrier for rapid action within minutes."
+                                />
+                                <${BenefitCard} 
+                                    icon=${Activity}
+                                    title="Metabolic Health"
+                                    description="Optimizes brain glucose and oxygen utilization to sustain energy for longer periods."
+                                />
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Final CTA -->
+                    <section class="py-20 text-center px-6">
+                        <div class="max-w-3xl mx-auto space-y-8 bg-blue-50 p-10 md:p-16 rounded-[3rem] border-2 border-dashed border-blue-200">
+                            <h2 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight">
+                                Exclusive Limited Time Offer!
+                            </h2>
+                            <p class="text-gray-600 text-lg font-medium">
+                                Check if ${PRODUCT_NAME} is still in stock and secure your bottle with a 60-day money-back guarantee.
+                            </p>
+                            <button 
+                                onClick=${handleCtaClick}
+                                class="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white text-xl font-black py-6 px-16 rounded-2xl transition-all shadow-2xl flex items-center justify-center gap-3 mx-auto"
+                            >
+                                GO TO OFFICIAL WEBSITE NOW
+                            </button>
+                            <div class="flex justify-center gap-4 opacity-50">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Paypal" class="h-5" />
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="h-5" />
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="h-5" />
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Footer -->
+                    <footer class="bg-white border-t border-gray-100 py-16 px-6">
+                        <div class="max-w-6xl mx-auto text-center">
+                            <div class="flex flex-col md:flex-row justify-center items-center gap-10 mb-12">
+                                <div class="flex items-center gap-2 opacity-40">
+                                    <${BrainCircuit} size=${24} />
+                                    <span class="text-lg font-black tracking-tighter uppercase">${PRODUCT_NAME}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6 text-[10px] text-gray-400 text-center leading-relaxed max-w-4xl mx-auto border-t border-gray-50 pt-10">
+                                <p>
+                                    <strong>MEDICAL DISCLAIMER:</strong> The information provided here is not intended to replace professional medical advice. This product is not intended to diagnose, treat, cure, or prevent any disease. Results vary from person to person.
+                                </p>
+                                <p>
+                                    This site is not affiliated with Google or any Google entity. Once you leave Google, the responsibility is no longer theirs, but ours. we make every effort to clearly state and show all product evidence and use real results.
+                                </p>
+                                <p>© ${CURRENT_YEAR} ${PRODUCT_NAME} - Authorized Independent Distribution.</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            `;
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(html`<${App} />`);
+    </script>
+</body>
+</html>
